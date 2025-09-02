@@ -1,0 +1,62 @@
+<% include ./partials/header.ejs %>
+
+<div class="w-full min-h-screen px-15 py-25 flex bg-zinc-100 items-center justify-center">
+    <div class=" main w-300 min-h-150 bg-white shadow-xl rounded-md px-4 py-4 " >
+        <div class="bg-zinc-100 w-full px-3 px-2 flex items-center justify-between px-2 py-2 ">
+            <h1 class="text-2xl font-bold text-red-700 tracking-wider opacity-90 ">  Edit Profile </h1>
+            <div class="w-10 h-10 rounded-full shadow-xl border-1 border-red-700 overflow-hidden ">
+                <img class="w-full h-full object-cover" src="/images/uploads/<%= user.profileImage %>" alt="">
+            </div>
+        </div>
+        <form  id="uploadform"  hidden action="/editfileupload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+        </form>
+        <div class=" dets bg-zinc-100 w-full px-10 py-8   mt-10">
+            <div class="w-full flex flex-col  items-center">
+                <div class="relative">
+                    <span id="uploadicon" class="absolute w-8 h-8 bottom-0 right-0 rounded-full shadow-xl bg-white flex items-center justify-center">
+                        <i class="ri-edit-2-fill"></i>
+                    </span>
+                    <div class="bg-zinc-300 w-32 h-32 rounded-full overflow-hidden border-2 shadow-xl border-red-700">
+                        <img class="w-full h-full object-cover" src="/images/uploads/<%= user.profileImage %>" alt="">
+                    </div>
+                </div>
+                
+                 
+            </div>
+            
+            <div class="mt-10">
+                <form action="/edit" method="post" autocomplete="off">
+                    <label class="px-2 text-md font-semibold py-2" for="name">Name</label>
+                    <input class="block w-full h-10 px-2 py-3  bg-white rounded-md font-semibold text-md tracking-wider text-zinc-500" type="text" name="username" value="<%= user.username %>">
+                    <label class="px-2 text-md font-semibold py-2" for="email">Email</label>
+                    <input class="block w-full h-10 px-2 py-3  bg-white rounded-md font-semibold text-md tracking-wider text-zinc-500" type="email" name="email" value="<%= user.email %>">
+                    
+                    <label class="px-2 text-md font-semibold py-2" for="contact">Contact</label>
+                    <input class="block w-full h-10 px-2 py-3 bg-white rounded-md font-semibold text-md tracking-wider text-zinc-500" type="number" name="contact" value="<%= user.contact %>">
+                    <div class="flex  items-center justify-center gap-10 mt-10">
+                        <a href="/profile" class="px-7 py-2 bg-red-600 rounded-md text-md font-semibold mt-3 hover:bg-red-700 text-white hover:rounded-full ">Back</a>
+                        <input class="px-7 py-2 bg-red-600 rounded-md text-md font-semibold mt-3 hover:bg-red-700 text-white hover:rounded-full " type="submit" value="Save Changes">
+                    </div> 
+
+                </form>
+            </div>
+            
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+  let icon =  document.querySelector("#uploadicon");
+  let form =  document.querySelector("#uploadform input");
+  icon.addEventListener("click",function(){
+    form.click();
+  })
+  form.addEventListener("change",function(){
+    document.querySelector("#uploadform").submit();
+  })
+</script>
+
+<% include ./partials/footer.ejs %>

@@ -1,0 +1,81 @@
+<% include ./partials/header.ejs %>
+
+<div class=" profile w-full h-full  bg-white">
+    <form  id="uploadform"  hidden action="/fileupload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+    </form>
+    <div class=" prodets flex flex-col  items-center justify-center ">
+        <div class="relative">
+            <span id="uploadicon" class="absolute w-8 h-8 bottom-0 right-0 rounded-full shadow-xl bg-zinc-200 flex items-center justify-center">
+                 <i class="ri-edit-2-fill"></i>
+            </span>
+             <div class="w-35 h-35 rounded-full  mt-25 overflow-hidden shadow-xl">
+                <img id="profile-img" class="w-full h-full object-cover" src="/images/uploads/<%= user.profileImage %>" alt=" ">
+             </div>
+
+        </div>               
+          <h1 class="text-3xl font-semibold mt-2"><%= user.username %></h1>
+          <h3 class="text-md">@<%= user.username %></h3> 
+          <a href="/edit" class="px-7 py-2 bg-zinc-300 rounded-md text-xs font-semibold mt-3 hover:bg-zinc-400 hover:text-white hover:rounded-full">Edit</a>
+          <a href="/upload" class="px-7 py-2 bg-red-600 rounded-md text-md font-semibold mt-3 hover:bg-red-700 text-white hover:rounded-full mt-2">Create new post</a>
+    </div>
+
+    <div class="cards flex flex-wrap px-10 py-10 gap-10 mt-15 ">
+        <div>
+            <div id="create" class="card w-75 h-50  rounded-md shadow-md overflow-hidden relative">
+                <img  class= " defaultPostImg w-full h-full object-cover hover:brightness-50" src="/images/uploads/<%= user?.posts[0]?.image %>" alt="">
+              
+            </div>
+            <a  id="text" href="/show/posts" class="createdPost  text-xl font-semibold mt-5">All your created pins</a>
+            <h5 id="text" class="text-xs opacity-60" > <%= user.posts.length %> pins</h5>
+        </div>
+        
+        <div>
+            <div id="saved" class="card w-75 h-50  rounded-md shadow-md overflow-hidden">
+                <img class="defaultPostImg  w-full h-full object-cover hover:brightness-50" src="/images/uploads/<%=user?.savedPost[0]?.image  %>" alt="">
+            </div>
+            <a  id="text" href="/save" class=" savedPost text-xl font-semibold mt-5"> saved pins</a>
+            <h5 id="text"  class="text-xs opacity-60" > <%= user?.savedPost?.length %> pins</h5>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+  let icon =  document.querySelector("#uploadicon");
+  let form =  document.querySelector("#uploadform input");
+  icon.addEventListener("click",function(){
+    form.click();
+  })
+  form.addEventListener("change",function(){
+    document.querySelector("#uploadform").submit();
+  })
+
+
+
+const defaultPostImg= document.querySelectorAll(".defaultPostImg")
+defaultPostImg.forEach(img=>{
+  img.addEventListener('error', function(event) {
+    event.target.src = 'https://thumbs.dreamstime.com/b/photo-collage-grid-mood-board-template-vector-illustration-mosaic-picture-album-frame-banner-moodboard-background-photography-192249020.jpg'; // Use a local default image
+  });
+});
+
+let createdPost= document.querySelector(".createdPost");
+let  create= document.querySelector("#create");
+create.addEventListener("click", function(){
+  createdPost.click();
+})
+
+
+let savedPost= document.querySelector(".savedPost");
+let save= document.querySelector("#saved");
+save.addEventListener("click", function(){
+  savedPost.click();
+})
+
+
+</script>
+<% include ./partials/footer.ejs %>
+
+

@@ -1,0 +1,36 @@
+<% include ./partials/header.ejs %>
+
+<div class="w-full min-h-screen px-2 py-15 sm:px-25 sm:py-20">
+      <div class=" flex flex-wrap gap-3 ">
+        <% posts.forEach(function(elem){ %>
+             <div class="cardbox  relative w-80 h-100 mt-10 rounded-md">
+                    <div class="feed w-full h-100  rounded-md overflow-hidden   hover:brightness-50 ">
+                        <img class="w-full h-full object-cover transition-all duration-300" src="/images/uploads/<%= elem.image %>">
+                         <div class="absolute inset-0   flex items-center justify-center opacity-0 hover:opacity-[100] transition-opacity duration-300 ">
+                            <h1 class="text-7xl   text-[#FFFFFF] text-bold " >Open</h1>
+                          </div> 
+                    </div>
+                    <a href="/show/posts/<%= elem._id %> " class=" open mt-2 text-sm capitalize"><%= elem.title %>  <%= elem.imageId %></a>
+            </div>
+
+      <% }) %>
+           
+        
+
+      </div>
+</div>
+<script>
+    let cards= document.querySelectorAll(".feed");
+    cards.forEach(function(card) {
+    card.addEventListener("click",function(){
+        const parentCardbox = this.closest('.cardbox');
+            const openLink = parentCardbox.querySelector(".open");
+            if (openLink) {
+                openLink.click();
+            }
+    });
+
+     });
+</script>
+
+<% include ./partials/footer.ejs %>

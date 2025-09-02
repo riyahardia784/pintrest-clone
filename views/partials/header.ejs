@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Printrest</title>
+   
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body><% if(nav===true){ %>
+  
+  
+    <nav>
+      <div class="relative">
+         <div  class="  w-full h-10 py-3 bg-white   flex justify-between fixed top-0 right-0 left-0 sm:px-10 sm:py-3 sm:w-full sm:h-20 z-50">
+    <h3 class="text-red-700  font-[1000] text-xl flex items-center sm:text-2xl ">Printrest</h3>
+   
+    <div class="flex gap-3  py-3 items-center sm:gap-10 ">
+      <a class="font-medium font-semibold text-zinc-500"  href="/profile">Profile</a>
+      <a class="font-medium font-semibold text-zinc-500"  href="/feed">Feed</a>
+      <a class="w-15 h-7 flex items-center justify-center mr-1 bg-red-600 text-white rounded-md hover:bg-red-700 sm:px-3 sm:py-2 sm:w-20 sm:h-10" href="/logout">Logout</a>
+    </div>
+
+  </div>
+</div>  
+    </nav>
+ 
+
+
+
+<% } %>
+  
