@@ -139,4 +139,5 @@ A Pinterest-like web application where users can register, log in, create posts 
 
 
 
-MIT
+
+
